@@ -1,6 +1,6 @@
 from pulp import *
 
-# Warehouses and cities
+# Sets of warehouses and cities
 warehouses = ["W1", "W2", "W3"]
 cities = ["C1", "C2", "C3", "C4"]
 
@@ -8,30 +8,25 @@ cities = ["C1", "C2", "C3", "C4"]
 opening_cost = {
     "W1": 400,
     "W2": 300,
-    "W3": 350
-}
+    "W3": 350}
 
 # Maximum capacity of each warehouse
 capacity = {
     "W1": 100,
     "W2": 80,
-    "W3": 90
-}
+    "W3": 90}
 
 # Demand required by each city
 demand = {
     "C1": 30,
     "C2": 40,
     "C3": 35,
-    "C4": 25
-}
+    "C4": 25}
 
 # Cost per unit shipped from warehouse to city
-shipping_cost = {
-    ("W1", "C1"): 4, ("W1", "C2"): 6, ("W1", "C3"): 9, ("W1", "C4"): 5,
-    ("W2", "C1"): 5, ("W2", "C2"): 4, ("W2", "C3"): 7, ("W2", "C4"): 6,
-    ("W3", "C1"): 6, ("W3", "C2"): 5, ("W3", "C3"): 4, ("W3", "C4"): 7
-}
+shipping_cost = {("W1", "C1"): 4, ("W1", "C2"): 6, ("W1", "C3"): 9, ("W1", "C4"): 5,
+("W2", "C1"): 5, ("W2", "C2"): 4, ("W2", "C3"): 7, ("W2", "C4"): 6,
+("W3", "C1"): 6, ("W3", "C2"): 5, ("W3", "C3"): 4, ("W3", "C4"): 7}
 
 # Model Initialization
 model = LpProblem("Warehouse_Location_and_Distribution", LpMinimize)
@@ -42,16 +37,14 @@ open_warehouse = LpVariable.dicts(
     warehouses,
     lowBound=0,
     upBound=1,
-    cat=LpBinary
-)
+    cat=LpBinary)
 
 # Continuous variable: shipment amount
 shipment = LpVariable.dicts(
     "Shipment",
     [(w, c) for w in warehouses for c in cities],
     lowBound=0,
-    cat=LpContinuous
-)
+    cat=LpContinuous)
 
 # Objective Function:
 # 1-) Fixed opening costs
@@ -59,8 +52,7 @@ shipment = LpVariable.dicts(
 model += (
     lpSum(opening_cost[w] * open_warehouse[w] for w in warehouses) +
     lpSum(shipping_cost[(w, c)] * shipment[(w, c)]
-          for w in warehouses for c in cities)
-)
+          for w in warehouses for c in cities))
 
 # Constraints:
 
