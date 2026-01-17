@@ -1,6 +1,5 @@
 from pulp import *
 
-# Sets of warehouses and cities
 warehouses = ["W1", "W2", "W3"]
 cities = ["C1", "C2", "C3", "C4"]
 
