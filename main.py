@@ -54,7 +54,6 @@ model += (
           for w in warehouses for c in cities))
 
 # Constraints:
-
 # Each city's total received shipment must equal its demand
 for c in cities:
     model += lpSum(shipment[(w, c)] for w in warehouses) == demand[c]
