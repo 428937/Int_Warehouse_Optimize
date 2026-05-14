@@ -1,7 +1,7 @@
 # Int_Warehouse_Optimize
 An integer optimization problem solved with python using PuLP, it is about a warehouse selection and cost minimization.
 
-**Problem Definition**
+## Problem Definition
 
 A company operates multiple warehouses and must distribute products to several cities. Each warehouse has a fixed opening cost and a limited shipping capacity, while each city has a fixed demand that must be fully satisfied.
 
