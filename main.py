@@ -9,7 +9,7 @@ opening_cost = {
     "W2": 300,
     "W3": 350}
 
-# Maximum capacity of each warehouses
+# Maximum capacity of each warehouse
 capacity = {
     "W1": 100,
     "W2": 80,
