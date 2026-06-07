@@ -58,7 +58,7 @@ model += (
 for c in cities:
     model += lpSum(shipment[(w, c)] for w in warehouses) == demand[c]
 
-# Warehouse capacity constraint
+# Warehouse capacity constraints
 # If warehouse is closed, allowed shipment becomes zero
 for w in warehouses:
     model += (
